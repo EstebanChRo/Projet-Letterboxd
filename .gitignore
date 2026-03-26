@@ -1,3 +1,7 @@
+TODO.md
+Dataset/
+letterboxd*/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
