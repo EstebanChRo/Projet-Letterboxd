@@ -146,3 +146,20 @@ class PostgreSQLClient:
             sql.SQL(", ").join([sql.Placeholder()] * len(columns))
         )
         return self.execute_query(query, values)
+
+    def create_tables(self, table_definitions: Dict[str, str]) -> bool:
+        """
+        Crée une série de tables dans la base de données.
+
+        Args:
+            table_definitions: Dictionnaire où les clés sont les noms des tables et les valeurs sont les requêtes SQL de création.
+
+        Returns:
+            bool: True si toutes les tables ont été créées avec succès, False sinon.
+        """
+        for table_name, query in table_definitions.items():
+            print(f"Création de la table {table_name}...")
+            if not self.execute_query(query):
+                print(f"Échec de la création de la table {table_name}.")
+                return False
+        return True
